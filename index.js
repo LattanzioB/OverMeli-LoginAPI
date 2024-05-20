@@ -3,7 +3,7 @@ const dotenv = require('dotenv').config();
 const cors = require('cors');
 const {mongoose} = require('mongoose');
 const cookieParser = require('cookie-parser');
-const {url, rwurl} = require('./config')
+const {url, rwurl, port} = require('./config')
 const {specs} = require('./swagger_config');
 const swaggerUi = require("swagger-ui-express");
 const {AuthRouter} = require('./routes/authRoutes')
@@ -28,6 +28,7 @@ app.use(
   swaggerUi.setup(specs, { explorer: true })
 );
 
-const port = 8000;
-app.listen(port, ()=> console.log(`server is running on port ${port}`))
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
