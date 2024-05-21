@@ -9,7 +9,11 @@ const swaggerUi = require("swagger-ui-express");
 const {AuthRouter} = require('./routes/authRoutes')
 
 const routes = new AuthRouter();
-
+const allowedOrigins = [
+  'https://overmeli-fronted-production.up.railway.app',  // Production frontend URL
+  'https://overmeli-loginapi-production.up.railway.app/',
+  'http://localhost:8090'  // Local development URL (optional, for local testing)
+];
 
 //database connection
 mongoose.connect(rwurl) //Web: MONGO_URL //docker: url
@@ -36,7 +40,10 @@ app.use(cors({
       return callback(new Error(msg), false);
     }
     return callback(null, true);
-  }
+  },
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Allow credentials if needed
+  optionsSuccessStatus: 204
 }));
 
 
