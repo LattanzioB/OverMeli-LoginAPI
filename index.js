@@ -13,7 +13,10 @@ const allowedOrigins = [
   'https://overmeli-fronted-production.up.railway.app',  // Production frontend URL
   'https://overmeli-loginapi-production.up.railway.app/',
   'http://localhost:8090',
-  'http://localhost:8000'  // Local development URL (optional, for local testing)
+  'http://localhost:8000',
+  'overmeli-fronted.railway.internal',
+  'overmeli-loginapi.railway.internal'  
+    // Local development URL (optional, for local testing)
 ];
 
 //database connection
