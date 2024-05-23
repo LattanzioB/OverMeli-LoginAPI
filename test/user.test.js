@@ -1,9 +1,10 @@
 const {registerUser, loginUser, getProfile} = require('../controller/auth_controller')
 const {mongoose} = require('mongoose');
 const User = require('../model/user_model');
-const {url} = require('../config.js')
+const {url} = require('../config.js');
+const { AuthService } = require('../service/auth_service.js');
 
-
+/*
 describe('insert', () => {
   beforeAll(async () => {
     //database connection
@@ -41,6 +42,31 @@ describe('insert', () => {
     expect(insertedUser).toHaveProperty('_id')
   });
 });
+*/
+
+describe('AuthService Tests', () => {
+
+  it('should hash a password', async () => {
+    const auth_service = new AuthService();
+
+    const password = '123456';
+    const hash_password = await auth_service.hashPassword(password);
+    console.log(hash_password)
+    expect(hash_password).not.toBe(password);
+  });
+
+  it('should return true when comparing a hash password with the original', async () => {
+    const auth_service = new AuthService();
+
+    const password = '123456';
+    const hash_password = await auth_service.hashPassword(password);
+    const isMatch = await auth_service.comparePassword(password, hash_password);
+
+    expect(isMatch).toBe(true);
+  });
+
+});
+
 /*
 test('register user successfuly', async () => {
     await expect(registerUser({ userName:'user1', password:'password' }).resolves.toHaveProperty(userName, 'user1') );

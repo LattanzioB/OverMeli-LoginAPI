@@ -3,7 +3,7 @@ const dotenv = require('dotenv').config();
 const cors = require('cors');
 const {mongoose} = require('mongoose');
 const cookieParser = require('cookie-parser');
-const {url, rwurl} = require('./config')
+const {url, rwurl,clurl} = require('./config')
 const {specs} = require('./swagger_config');
 const swaggerUi = require("swagger-ui-express");
 const {AuthRouter} = require('./routes/authRoutes')
@@ -12,7 +12,7 @@ const routes = new AuthRouter();
 
 
 //database connection
-mongoose.connect(url) //Web: MONGO_URL //docker: url
+mongoose.connect(clurl) //Web: clurl //docker: url
 .then(()=> console.log('Database Connected'))
 .catch((err) => console.log('Database not Connected', err))
 
