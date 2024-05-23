@@ -20,7 +20,8 @@ describe('insert', () => {
   });
 
   afterAll(async () => {
-    mongoose.deleteModel('User')
+    await mongoose.deleteModel('User')
+    await mongoose.connection.close();
   });
 
   it('should insert a user into collection', async () => {
