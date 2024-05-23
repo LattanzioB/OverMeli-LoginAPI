@@ -20,6 +20,7 @@ const allowedOrigins = [
 ];
 
 //database connection
+
 mongoose.connect(rwurl) //Web: MONGO_URL //docker: url
 .then(()=> console.log('Database Connected'))
 .catch((err) => console.log('Database not Connected', err))
