@@ -12,7 +12,7 @@ const routes = new AuthRouter();
 
 
 //database connection
-mongoose.connect(clurl) //Web: clurl //docker: url
+mongoose.connect(url) //Web: clurl //docker: url
 .then(()=> console.log('Database Connected'))
 .catch((err) => console.log('Database not Connected', err))
 
