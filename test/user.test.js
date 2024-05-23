@@ -1,7 +1,7 @@
 const {registerUser, loginUser, getProfile} = require('../controller/auth_controller')
 const {mongoose} = require('mongoose');
 const User = require('../model/user_model');
-const {url} = require('../config.js');
+const {clurl} = require('../config.js');
 const { AuthService } = require('../service/auth_service.js');
 
 
