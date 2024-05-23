@@ -42,7 +42,7 @@ describe('insert', () => {
     expect(insertedUser).toHaveProperty('_id')
   });
 });
-*/
+
 
 describe('AuthService Tests', () => {
 
