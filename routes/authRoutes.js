@@ -79,9 +79,9 @@ class AuthRouter {
                 origin: 'http://localhost:8090'
             })
         )
-        this.auth_router.post('/register', this.auth_controller.registerUser)
-        this.auth_router.post('/login', this.auth_controller.loginUser)
-        this.auth_router.get('/profile', this.auth_controller.getProfile)
+        this.auth_router.post('/register', (req, res) => this.auth_controller.registerUser(req, res))
+        this.auth_router.post('/login', (req, res) => this.auth_controller.loginUser(req, res))
+        this.auth_router.get('/profile', (req, res) => this.auth_controller.getProfile(req, res))
     }
 
     get_routes() {
