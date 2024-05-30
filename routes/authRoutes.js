@@ -68,7 +68,7 @@ const {AuthController} = require('../controller/auth_controller')
  *         description: Some server error
  * 
  * /delete:
- *   post:
+ *   delete:
  *     summary: Delete a user
  *     tags: [Users]
  *     requestBody:
