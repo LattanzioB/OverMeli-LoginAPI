@@ -74,7 +74,8 @@ class AuthController {
     async deleteUser(req, res){
        
         try{
-            const {userName, password} = req.body;
+            console.log(req.body)
+            const {userName, password} = req.data.json;
             // Check if name was entered
             if(!userName){
                 return res.json({
