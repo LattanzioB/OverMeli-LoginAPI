@@ -75,7 +75,7 @@ class AuthController {
        
         try{
             console.log(req.body)
-            const {userName, password} = req.data.json;
+            const {userName, password} = req.body;
             // Check if name was entered
             if(!userName){
                 return res.json({
