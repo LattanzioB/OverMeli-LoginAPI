@@ -63,7 +63,7 @@ describe('AuthService Tests', () => {
     const hash_password = await auth_service.hashPassword(password);
     const isMatch = await auth_service.comparePassword(password, hash_password);
 
-    expect(isMatch).toBe(false);
+    expect(isMatch).toBe(true);
   });
 
 });
