@@ -102,7 +102,7 @@ class AuthRouter {
         this.auth_router.post('/register', (req, res) => this.auth_controller.registerUser(req, res))
         this.auth_router.post('/login', (req, res) => this.auth_controller.loginUser(req, res))
         this.auth_router.get('/profile', (req, res) => this.auth_controller.getProfile(req, res))
-        this.auth_router.post('/delete', (req, res) => this.auth_controller.deleteUser(req, res))
+        this.auth_router.delete('/delete', (req, res) => this.auth_controller.deleteUser(req, res))
     }
 
     get_routes() {
