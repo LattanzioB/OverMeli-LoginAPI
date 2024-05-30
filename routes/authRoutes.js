@@ -66,6 +66,26 @@ const {AuthController} = require('../controller/auth_controller')
  *               $ref: '#/components/schemas/User'
  *       500:
  *         description: Some server error
+ * 
+ * /delete:
+ *   post:
+ *     summary: Delete a user
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Deleted User.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       500:
+ *         description: Some server error
  */
 
 //middleware
@@ -82,6 +102,7 @@ class AuthRouter {
         this.auth_router.post('/register', (req, res) => this.auth_controller.registerUser(req, res))
         this.auth_router.post('/login', (req, res) => this.auth_controller.loginUser(req, res))
         this.auth_router.get('/profile', (req, res) => this.auth_controller.getProfile(req, res))
+        this.auth_router.post('/delete', (req, res) => this.auth_controller.deleteUser(req, res))
     }
 
     get_routes() {

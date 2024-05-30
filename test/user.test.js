@@ -20,7 +20,7 @@ describe('insert', () => {
   });
 
   afterAll(async () => {
-    await mongoose.deleteModel('User')
+    await User.deleteMany({});
     await mongoose.connection.close();
   });
 

@@ -26,9 +26,7 @@ class AuthController {
             console.log(userName)
             const exist = await User.findOne({userName}).exec()
             if(exist) {
-                return res.json({
-                    error: 'Email is taken already'
-                })
+                return res.status(500).json({ error: 'Email is taken already' });
             }
             const hashedPassword = await this.auth_service.hashPassword(password)
             const user = await User.create({
@@ -68,6 +66,36 @@ class AuthController {
                 })
             }
         } catch (error) {
+            console.log(error)
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+    }
+
+    async deleteUser(req, res){
+       
+        try{
+            const {userName, password} = req.body;
+            // Check if name was entered
+            if(!userName){
+                return res.json({
+                    error: 'user name is required'
+                })
+            };
+
+            console.log('deleting user: ', userName)
+            console.log(userName)
+            const exist = await User.findOne({userName}).exec()
+            if(!exist) {
+                return res.json({
+                    error: 'User doesnt exist'
+                })
+            }
+
+            await User.deleteOne({ userName: userName })
+    
+            return res.status(200).json({ success: 'User Deleted' });
+    
+        } catch (error){
             console.log(error)
             return res.status(500).json({ error: 'Internal server error' });
         }
