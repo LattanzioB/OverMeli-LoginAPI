@@ -104,17 +104,19 @@ class AuthController {
 
     
     async getProfile(req, res) {
-        const {token} = req.cookies
-        if(token){
-            jwt.verify(token, process.env.JWT_SECRET, {}, (err, user)=>{
-                if(err){throw err};
-                res.json(user);
-            })
+        const { token } = req.cookies;
+        if (token) {
+          jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+            if (err) {
+              res.clearCookie('token').json({ error: 'Not logged in' });
+            } else {
+              res.json(user);
+            }
+          });
+        } else {
+          res.json({ error: 'Not logged in' });
         }
-        else{
-            res.json({error: 'No valid jwt'})
-        }
-    }
+      }
 }
 
 
