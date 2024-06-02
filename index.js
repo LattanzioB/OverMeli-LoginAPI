@@ -7,6 +7,8 @@ const {url, rwurl,clurl} = require('./config')
 const {specs} = require('./swagger_config');
 const swaggerUi = require("swagger-ui-express");
 const {AuthRouter} = require('./routes/authRoutes')
+const setupDatabase = require('./setup');
+const UserModel = require('./model/user_model'); 
 
 const routes = new AuthRouter();
 
@@ -15,6 +17,9 @@ const routes = new AuthRouter();
 mongoose.connect(url) //Web: clurl //docker: url
 .then(()=> console.log('Database Connected'))
 .catch((err) => console.log('Database not Connected', err))
+
+await UserModel.deleteMany({});
+await setupDatabase();
 
 const app = express();
 //middleware
@@ -30,4 +35,6 @@ app.use(
 
 const port = 8000;
 app.listen(port, ()=> console.log(`server is running on port ${port}`))
+
+
 
