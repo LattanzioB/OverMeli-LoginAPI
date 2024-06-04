@@ -8,18 +8,21 @@ const {specs} = require('./swagger_config');
 const swaggerUi = require("swagger-ui-express");
 const {AuthRouter} = require('./routes/authRoutes')
 const setupDatabase = require('./setup');
-const UserModel = require('./model/user_model'); 
+const User = require('./model/user_model'); 
 
 const routes = new AuthRouter();
 
 
 //database connection
 mongoose.connect(url) //Web: clurl //docker: url
-.then(()=> console.log('Database Connected'))
+.then(async ()=> {
+  console.log('Database Connected')
+  await User.deleteMany({});
+  await setupDatabase();
+})
 .catch((err) => console.log('Database not Connected', err))
 
-await UserModel.deleteMany({});
-await setupDatabase();
+
 
 const app = express();
 //middleware
