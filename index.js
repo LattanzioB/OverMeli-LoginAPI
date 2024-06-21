@@ -14,7 +14,7 @@ const routes = new AuthRouter();
 
 
 //database connection
-mongoose.connect(url) //Web: clurl //docker: url
+mongoose.connect(clurl) //Web: clurl //docker: url
 .then(async ()=> {
   console.log('Database Connected')
   await User.deleteMany({});
