@@ -9,7 +9,7 @@ class AuthService{
                 }
                 bcrypt.hash(password, salt, (err, hash) => {
                     if(err){
-                        reject(err)
+                        reject(new Error(err))
                     }
                     resolve(hash)
                 })

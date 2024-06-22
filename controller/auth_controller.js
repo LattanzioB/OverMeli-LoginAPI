@@ -18,7 +18,7 @@ class AuthController {
                 })
             };
             // Check if password was entered
-            if(!password | password.length < 6){
+            if(!password || password.length < 6){
                 return res.json({
                     error: 'user password is required and at least 6 characters long'
                 })    
@@ -75,7 +75,7 @@ class AuthController {
        
         try{
             console.log(req.body)
-            const {userName, password} = req.body;
+            const {userName} = req.body;
             // Check if name was entered
             if(!userName){
                 return res.json({

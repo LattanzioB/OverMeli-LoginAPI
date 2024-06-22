@@ -67,9 +67,3 @@ describe('AuthService Tests', () => {
   });
 
 });
-
-/*
-test('register user successfuly', async () => {
-    await expect(registerUser({ userName:'user1', password:'password' }).resolves.toHaveProperty(userName, 'user1') );
-  });
-  */
