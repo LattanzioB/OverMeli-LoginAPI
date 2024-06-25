@@ -18,7 +18,7 @@ class AuthController {
                 })
             };
             // Check if password was entered
-            if(!password | password.length < 6){
+            if(!password || password.length < 6){
                 return res.json({
                     error: 'user password is required and at least 6 characters long'
                 })    
@@ -26,9 +26,7 @@ class AuthController {
             console.log(userName)
             const exist = await User.findOne({userName}).exec()
             if(exist) {
-                return res.json({
-                    error: 'Email is taken already'
-                })
+                return res.status(500).json({ error: 'Email is taken already' });
             }
             const hashedPassword = await this.auth_service.hashPassword(password)
             const user = await User.create({
@@ -39,6 +37,7 @@ class AuthController {
     
         } catch (error){
             console.log(error)
+            return res.status(500).json({ error: 'Internal server error' });
         }
     }
 
@@ -68,22 +67,56 @@ class AuthController {
             }
         } catch (error) {
             console.log(error)
+            return res.status(500).json({ error: 'Internal server error' });
+        }
+    }
+
+    async deleteUser(req, res){
+       
+        try{
+            console.log(req.body)
+            const {userName} = req.body;
+            // Check if name was entered
+            if(!userName){
+                return res.json({
+                    error: 'user name is required'
+                })
+            };
+
+            console.log('deleting user: ', userName)
+            console.log(userName)
+            const exist = await User.findOne({userName}).exec()
+            if(!exist) {
+                return res.json({
+                    error: 'User doesnt exist'
+                })
+            }
+
+            await User.deleteOne({ userName: userName })
+    
+            return res.status(200).json({ success: 'User Deleted' });
+    
+        } catch (error){
+            console.log(error)
+            return res.status(500).json({ error: 'Internal server error' });
         }
     }
 
     
     async getProfile(req, res) {
-        const {token} = req.cookies
-        if(token){
-            jwt.verify(token, process.env.JWT_SECRET, {}, (err, user)=>{
-                if(err){throw err};
-                res.json(user);
-            })
+        const { token } = req.cookies;
+        if (token) {
+          jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+            if (err) {
+              res.clearCookie('token').json({ error: 'Not logged in' });
+            } else {
+              res.json(user);
+            }
+          });
+        } else {
+          res.json({ error: 'Not logged in' });
         }
-        else{
-            res.json({error: 'No valid jwt'})
-        }
-    }
+      }
 }
 
 
