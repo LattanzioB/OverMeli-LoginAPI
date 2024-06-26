@@ -4,7 +4,8 @@ const allowedOrigins = [
     'http://localhost:8090',
     'http://localhost:8000',
     'overmeli-fronted.railway.internal',
-    'overmeli-loginapi.railway.internal'  
+    'overmeli-loginapi.railway.internal',
+    "https://over-meli-fronted.vercel.app"  
   ];
   
   const corsOptions = {
