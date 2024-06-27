@@ -10,7 +10,7 @@ const {
   } = process.env;
   
   const url = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`;
-  const clurl = MONGO_URL
+  const clurl = "mongodb+srv://taatolat:puL3LCO7E0kAconR@overmeli.qyyqrk9.mongodb.net/?retryWrites=true&w=majority&appName=OverMeLi"
   const rwurl = MONGO_URL_RW
   const port = PORT
 
