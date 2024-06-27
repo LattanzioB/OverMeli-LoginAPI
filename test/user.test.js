@@ -8,7 +8,7 @@ const { AuthService } = require('../service/auth_service.js');
 describe('insert', () => {
   beforeAll(async () => {
     //database connection
-    console.log("Test Data base conected")
+    console.log(rwurl)
     mongoose.connect(rwurl) //Web: process.env.MONGO_URL //docker: url
     .then(()=> console.log('Test Database Connected'))
     .catch((err) => console.log('Test Database not Connected', err))
