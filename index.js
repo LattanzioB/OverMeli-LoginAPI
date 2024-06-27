@@ -13,8 +13,12 @@ const User = require('./model/user_model');
 
 // database connection
 mongoose.connect(rwurl)
-  .then(() => console.log('Database Connected'))
-  .catch((err) => console.log('Database not Connected', rwurl, err));
+.then(async ()=> {
+  console.log('Database Connected')
+  await User.deleteMany({});
+  await setupDatabase();
+})
+.catch((err) => console.log('Database not Connected', err))
 
 const app = express();
 
