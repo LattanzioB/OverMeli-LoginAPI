@@ -2,8 +2,9 @@ name: Build
 on:
  push:
    branches:
-     - railwayDeploy
+     - main
  pull_request:
+     - main
    types: [opened, synchronize, reopened]
 jobs:
   sonarqube:
