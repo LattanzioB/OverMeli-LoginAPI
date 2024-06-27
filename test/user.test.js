@@ -1,7 +1,7 @@
 const {registerUser, loginUser, getProfile} = require('../controller/auth_controller')
 const {mongoose} = require('mongoose');
 const User = require('../model/user_model');
-const {clurl} = require('../config.js');
+const {rwurl} = require('../config.js');
 const { AuthService } = require('../service/auth_service.js');
 
 
@@ -9,7 +9,7 @@ describe('insert', () => {
   beforeAll(async () => {
     //database connection
     console.log("Test Data base conected")
-    mongoose.connect(clurl) //Web: process.env.MONGO_URL //docker: url
+    mongoose.connect(rwurl) //Web: process.env.MONGO_URL //docker: url
     .then(()=> console.log('Test Database Connected'))
     .catch((err) => console.log('Test Database not Connected', err))
     
