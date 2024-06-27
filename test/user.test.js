@@ -20,7 +20,7 @@ describe('insert', () => {
   });
 
   afterAll(async () => {
-    await mongoose.deleteModel('User')
+    await User.deleteMany({});
     await mongoose.connection.close();
   });
 
@@ -66,10 +66,6 @@ describe('AuthService Tests', () => {
     expect(isMatch).toBe(true);
   });
 
-});
 
-/*
-test('register user successfuly', async () => {
-    await expect(registerUser({ userName:'user1', password:'password' }).resolves.toHaveProperty(userName, 'user1') );
-  });
-  */
+  
+});

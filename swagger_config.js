@@ -20,7 +20,7 @@ const options = {
       },
       servers: [
         {
-          url: "http://localhost:8000",
+          url: "https://overmeli-loginapi-production.up.railway.app",
         },
       ],
     },
