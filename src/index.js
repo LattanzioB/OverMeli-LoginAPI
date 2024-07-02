@@ -5,14 +5,14 @@ const corsOptions = require('./cors-options');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { url, rwurl, port } = require('./config');
-const { specs } = require('./swagger_config');
+const { specs } = require('../swagger_config');
 const swaggerUi = require("swagger-ui-express");
 const { AuthRouter } = require('./routes/authRoutes');
 const setupDatabase = require('./setup');
 const User = require('./model/user_model');
 
 // database connection
-mongoose.connect(rwurl)
+mongoose.connect(url)
 .then(async ()=> {
   console.log('Database Connected')
   await User.deleteMany({});
