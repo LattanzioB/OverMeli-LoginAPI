@@ -39,12 +39,12 @@ class AuthController {
         }
       }
 
-    async loginUser(req,res){
+      async loginUser(req,res){
         try {
-            console.log(req.body)
+            console.log("req.body: ",req.body)
             const {userName, password} = req.body;
             
-            //Check if user exist
+            // Check if user exists
             const userExist = await User.findOne({userName}).exec();
             if(!userExist){
                 return res.json({
@@ -68,7 +68,6 @@ class AuthController {
             return res.status(500).json({ error: 'Internal server error' });
         }
     }
-
     async deleteUser(req, res){
        
         try{

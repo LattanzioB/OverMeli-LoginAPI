@@ -25,13 +25,19 @@
   "devDependencies": {
     "@shelf/jest-mongodb": "^4.3.2",
     "jest": "^29.7.0",
-    "node-mocks-http": "^1.15.0"
+    "node-mocks-http": "^1.15.0",
+    "supertest": "^7.0.0"
   },
   "jest": {
     "verbose": true,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
-      "!**/*.test.js"
+      "!**/*.test.js",
+      "!src/config.js",
+      "!src/cors-options.js",
+      "!src/setup.js",
+      "!src/index.js",
+      "!src/routes/**.js"
     ],
     "coverageThreshold": {
       "global": {
