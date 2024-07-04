@@ -2,6 +2,8 @@ name: SonarQube analysis
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+     - main
   workflow_dispatch:
 jobs:
   Analysis:
