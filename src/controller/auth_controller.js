@@ -8,38 +8,36 @@ class AuthController {
         this.auth_service = new AuthService()
     }
 
-    async registerUser(req, res){
-        try{
-            const {userName, password} = req.body;
-            // Check if name was entered
-            if(!userName){
-                return res.json({
-                    error: 'user name is required'
-                })
-            };
-            // Check if password was entered
-            if(!password || password.length < 6){
-                return res.json({
-                    error: 'user password is required and at least 6 characters long'
-                })    
-            }
-            console.log(userName)
-            const exist = await User.findOne({userName}).exec()
-            if(exist) {
-                return res.status(500).json({ error: 'Email is taken already' });
-            }
-            const hashedPassword = await this.auth_service.hashPassword(password)
-            const user = await User.create({
-                userName, password: hashedPassword
-            })
+    async registerUser(req, res) {
+        try {
+          const { userName, password } = req.body;
+          // Check if name was entered
+          if (!userName) {
+            return res.json({
+              error: 'user name is required'
+            });
+          }
+          // Check if password was entered
+          if (!password || password.length < 6) {
+            return res.json({
+              error: 'user password is required and at least 6 characters long'
+            });
+          }
+          console.log(userName);
+          const exist = await User.findOne({ userName }).exec();
+          if (exist) {
+            return res.status(500).json({ error: 'Email is taken already' });
+          }
+          const hashedPassword = await this.auth_service.hashPassword(password);
+          const user = await User.create({
+            userName, password: hashedPassword
+          });
     
-            return res.json(user)
-    
-        } catch (error){
-            console.log(error)
-            return res.status(500).json({ error: 'Internal server error' });
+          return res.json(user);
+        } catch (error) {
+          return res.status(500).json({ error: 'Internal server error' });
         }
-    }
+      }
 
     async loginUser(req,res){
         try {
