@@ -1,6 +1,4 @@
 const express = require('express');
-
-const cors = require('cors');
 const {AuthController} = require('../controller/auth_controller')
 /**
  * @swagger
@@ -93,7 +91,6 @@ class AuthRouter {
     constructor(){
         this.auth_router = express.Router();
         this.auth_controller = new AuthController();
-        // Remove the specific CORS middleware here
         this.auth_router.post('/register', (req, res) => this.auth_controller.registerUser(req, res));
         this.auth_router.post('/login', (req, res) => this.auth_controller.loginUser(req, res));
         this.auth_router.get('/profile', (req, res) => this.auth_controller.getProfile(req, res));

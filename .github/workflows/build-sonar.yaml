@@ -1,25 +1,19 @@
-name: Build
+name: SonarQube analysis
 on:
- push:
-   branches:
-     - main
- pull_request:
-     - main
-   types: [opened, synchronize, reopened]
+  push:
+    branches: [ "desarrollo" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
 jobs:
-  sonarqube:
-    name: sonarqube
+  Analysis:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 
-      - name: Install dependencies
-        run: npm install 
-      - name: Test and coverage
-        run: npm test --coverage
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@master
+      - name: Analyze with SonarQube
+        uses: SonarSource/sonarqube-scan-action@v2.0.1
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   
           SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
