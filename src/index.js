@@ -10,6 +10,10 @@ const swaggerUi = require("swagger-ui-express");
 const { AuthRouter } = require('./routes/authRoutes');
 const setupDatabase = require('./setup');
 const User = require('./model/user_model');
+const promClient = require('prom-client');  
+
+const register = promClient.register;
+promClient.collectDefaultMetrics();
 
 // database connection
 mongoose.connect(url)
@@ -33,6 +37,16 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(specs, { explorer: true })
 );
+
+app.get('/metrics', async (req, res) => {
+  try {
+    res.set('Content-Type', register.contentType);
+    const metrics = await register.metrics()
+    res.send(metrics);
+  } catch (ex) {
+    res.status(500).end(ex);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

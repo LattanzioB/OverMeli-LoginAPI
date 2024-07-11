@@ -20,11 +20,11 @@ const options = {
       },
       servers: [
         {
-          url: "https://overmeli-loginapi-production.up.railway.app",
+          url: "https://localhost:8000/"//"https://overmeli-loginapi-production.up.railway.app",
         },
       ],
     },
-    apis: ["./routes/*.js"],
+    apis: ["./src/routes/*.js"],
   };
   
   const specs = swaggerJsdoc(options);

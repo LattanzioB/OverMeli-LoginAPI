@@ -3,7 +3,9 @@ const allowedOrigins = [
   'https://overmeli-loginapi-production.up.railway.app',
   'http://localhost:8090',
   'http://localhost:8000',
-  'https://over-meli-fronted.vercel.app'  
+  'https://over-meli-fronted.vercel.app',
+  "http://localhost:9090",
+  'http://host.docker.internal:9090'
 ];
 
 const corsOptions = {
