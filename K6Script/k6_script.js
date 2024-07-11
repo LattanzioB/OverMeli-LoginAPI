@@ -47,7 +47,7 @@ const spikeOptions = {
     }
 } 
 
-export const options = loadOptions
+export const options = spikeOptions
 
 
 export default () => {
