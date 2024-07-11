@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 
 class AuthService{
-    static hashPassword(password){
+    hashPassword(password){
         return new Promise((resolve, reject) => {
             bcrypt.genSalt(12, (err, salt) => {
                 if(err) {
@@ -9,7 +9,7 @@ class AuthService{
                 }
                 bcrypt.hash(password, salt, (err, hash) => {
                     if(err){
-                        reject(err)
+                        reject(new Error(err))
                     }
                     resolve(hash)
                 })
@@ -17,7 +17,7 @@ class AuthService{
         })
     }
 
-    static comparePassword(password, hashed){
+    comparePassword(password, hashed){
         // Check if either password or hashed is undefined or null
         if (!password || !hashed) {
             console.log(password)
