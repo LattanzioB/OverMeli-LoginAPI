@@ -16,7 +16,7 @@ const register = promClient.register;
 promClient.collectDefaultMetrics();
 
 // database connection
-mongoose.connect(url)
+mongoose.connect(rwurl)
 .then(async ()=> {
   console.log('Database Connected')
   await User.deleteMany({});
