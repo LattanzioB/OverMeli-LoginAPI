@@ -16,7 +16,7 @@ const register = promClient.register;
 promClient.collectDefaultMetrics();
 
 // database connection
-mongoose.connect(url)
+mongoose.connect(rwurl)
 .then(async ()=> {
   console.log('Database Connected')
   await User.deleteMany({});
@@ -51,5 +51,3 @@ app.get('/metrics', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-// testing

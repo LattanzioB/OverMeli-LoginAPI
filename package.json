@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "start": "nodemon --require ./instrumentation.js ./src/index.js"
+    "start": "nodemon ./src/index.js"
   },
   "author": "",
   "license": "ISC",

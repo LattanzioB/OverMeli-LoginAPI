@@ -38,7 +38,7 @@ const stressOptions = {
 const spikeOptions = {
     stages: [
         {duration: '30s', target: 2000},
-        {duration: '2m', target: 2000},
+        {duration: '1m', target: 2000},
         {duration: '30s', target: 0},
 
     ],
